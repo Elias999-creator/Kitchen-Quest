@@ -23,6 +23,71 @@ public class PokemonBase : ScriptableObject
     [SerializeField] int spAttack;
     [SerializeField] int spDefence;
     [SerializeField] int speed;
+    private int spDefense;
+
+    [SerializeField] List<LearnbleMove> learnbleMoves;
+
+    public string Name {
+        get { return name; }
+    }
+
+    public string Description{
+        get { return description; }
+    }
+
+    public Sprite FrontSprite {
+        get { return frontSprite; }
+    }
+
+    public Sprite BackSprite{
+        get { return backSprite; }
+    }
+
+    public PokemonType Type1{
+        get { return type1; }
+    }
+
+    public PokemonType Type2{
+        get { return type2; }
+    }
+
+    public int MaxHp {
+        get { return maxHp; }
+    }
+
+    public int Attack {
+        get { return attack; }
+    }
+
+    public int SpAttack {
+        get { return spAttack; }
+    }
+
+    public int Defense {
+        get { return defense; }
+    }
+
+    public int SpDefense {
+        get { return spDefense; }
+    }
+
+    public int Speed {
+        get { return speed; }
+    }
+}
+
+public class LearnbleMove
+{
+    [SerializeField] MoveBase moveBase;
+    [SerializeField] int level;
+
+    public MoveBase Base {
+        get { return moveBase; }
+    }
+
+    public int Level {
+        get { return level; }
+    }
 }
 
 public enum PokemonType
