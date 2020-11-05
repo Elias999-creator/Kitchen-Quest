@@ -8,6 +8,7 @@ public class Pokemon
     public int Level { get; set; }
 
     public int HP { get; set; }
+    public int MaxHP { get; set; }
     public List<Move> Moves { get; set; }
 
     public Pokemon(PokemonBase pBase, int pLevel)
@@ -19,7 +20,7 @@ public class Pokemon
 
         // Generate Moves
         Moves = new List<Move>();
-        foreach (var move in _base.LearnableMoves)
+        foreach (var move in Base.LearnableMoves)
         {
             if (move.Level <= Level)
                 Moves.Add(new Move(move.Base));
