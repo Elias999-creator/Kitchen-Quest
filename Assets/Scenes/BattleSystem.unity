@@ -857,7 +857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1fe93123b09a8a4fb7d189e2bdb3d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _base: {fileID: 11400000, guid: 8d0f8bb8836ec4f4996c11ad94e1b874, type: 2}
+  _base: {fileID: 11400000, guid: b1f0046d57dd1fa4eb07d2295ae14823, type: 2}
   level: 5
   isPlayerUnit: 0
 --- !u!114 &682404988

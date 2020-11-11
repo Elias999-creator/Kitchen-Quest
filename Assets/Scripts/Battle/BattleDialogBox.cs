@@ -31,6 +31,8 @@ public class BattleDialogBox : MonoBehaviour
             dialogText.text += letter;
             yield return new WaitForSeconds(1f / letterPerSecond);
         }
+
+        yield return new WaitForSeconds(1f);
     }
 
     public void EnableDialogText(bool enabled)
@@ -62,7 +64,7 @@ public class BattleDialogBox : MonoBehaviour
 
     public void UpdateMoveSelection(int selectionMove, Move move)
     {
-        for (int i=0; i<moveTexts.Count; ++i)
+        for (int i = 0; i < moveTexts.Count; ++i)
         {
             if (i == selectionMove)
                 moveTexts[i].color = highlightedColor;
