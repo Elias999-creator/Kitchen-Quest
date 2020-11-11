@@ -16,7 +16,8 @@ public class Pokemon
 
         Base = pBase;
         Level = pLevel;
-        HP = Base.MaxHp;
+        MaxHP = Base.MaxHp;
+        HP = MaxHP;
 
         // Generate Moves
         Moves = new List<Move>();
@@ -59,14 +60,6 @@ public class Pokemon
         get
         {
             return Mathf.FloorToInt((Base.Speed * Level) / 100f) + 5;
-        }
-    }
-
-    public int MaxHp
-    {
-        get
-        {
-            return Mathf.FloorToInt((Base.Speed * Level) / 100f) + 10;
         }
     }
 
