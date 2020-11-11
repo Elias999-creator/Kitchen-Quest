@@ -163,7 +163,7 @@ public class TypeChart
             return 1;
 
         int row = (int)attackType - 1;
-        int col = (int)defenceType - 1;
+        int col = (int)defenceType;
 
         return chart[row][col];
     }
