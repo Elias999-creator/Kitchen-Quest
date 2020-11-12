@@ -78,12 +78,12 @@ public class BattleDialogBox : MonoBehaviour
 
     public void SetMovesNames(List<Move> moves)
     {
-        for (int i = 0; i <= moves.Count; ++i)
+        for (int i = 0; i <= moves.Count; i++)
         {
             if (i < moves.Count)
                 moveTexts[i].text = moves[i].Base.Name;
             else
-                moveTexts[i].text = "   -";
+                moveTexts[i].text = "    -";
         }
     }
 }
