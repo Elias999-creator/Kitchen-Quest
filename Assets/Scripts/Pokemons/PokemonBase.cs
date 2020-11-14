@@ -116,16 +116,16 @@ public enum PokemonType
     Normal,
     Fire,
     Water,
+    Electric,
     Grass,
-    Flying,
+    Ice,
     Fighting,
     Poison,
-    Electric,
     Ground,
-    Rock,
+    Flying,
     Psychic,
-    Ice,
     Bug,
+    Rock,
     Ghost,
     Steel,
     Dragon,
@@ -163,7 +163,7 @@ public class TypeChart
             return 1;
 
         int row = (int)attackType - 1;
-        int col = (int)defenceType;
+        int col = (int)defenceType - 1;
 
         return chart[row][col];
     }
