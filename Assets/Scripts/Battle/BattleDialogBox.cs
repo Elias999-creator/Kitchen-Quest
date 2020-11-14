@@ -78,7 +78,7 @@ public class BattleDialogBox : MonoBehaviour
 
     public void SetMovesNames(List<Move> moves)
     {
-        for (int i = 0; i <= moves.Count; i++)
+        for (int i = 0; i < 4; i++)
         {
             if (i < moves.Count)
                 moveTexts[i].text = moves[i].Base.Name;
