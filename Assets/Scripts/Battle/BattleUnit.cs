@@ -12,23 +12,20 @@ public class BattleUnit : MonoBehaviour
 
     public Pokemon Pokemon { get; set; }
 
-    Image image;
+    Animator animator;
     Vector3 originalPos;
     Color originalColor;
     private void Awake()
     {
-        image = GetComponent<Image>();
-        originalPos = image.transform.localPosition;
-        originalColor = image.color;
+        animator = GetComponent<Animator>();
+        originalPos = transform.localPosition;
     }
 
     public void Setup()
     {
        Pokemon = new Pokemon(_base, level);
-        if (isPlayerUnit)
-            image.sprite = Pokemon.Base.BackSprite;
-        else
-            image.sprite = Pokemon.Base.FrontSprite;
+        if (!isPlayerUnit && animator)
+            animator.runtimeAnimatorController = Pokemon.Base.AnimationController;
 
         PlayerEnterAnimation();
     }
@@ -36,36 +33,25 @@ public class BattleUnit : MonoBehaviour
   
     public void PlayerEnterAnimation()
     {
-        if (isPlayerUnit)
-            image.transform.localPosition = new Vector3(-500f, originalPos.y);
-        else
-            image.transform.localPosition = new Vector3(500f, originalPos.y);
+        if (!isPlayerUnit)
+            transform.localPosition = new Vector3(500f, originalPos.y);
 
-        image.transform.DOLocalMoveX(originalPos.x, 1f);
+        transform.DOLocalMoveX(originalPos.x, 1f);
     }
 
     public void PlayAttackAnimation()
     {
-        var squence = DOTween.Sequence();
-        if (isPlayerUnit)
-            squence.Append(image.transform.DOLocalMoveX(originalPos.x + 50f, 0.25f));
-        else
-            squence.Append(image.transform.DOLocalMoveX(originalPos.x - 50f, 0.25f));
-
-        squence.Append(image.transform.DOLocalMoveX(originalPos.x, 0.25f));
+        if(animator)
+            animator.SetTrigger("doPhysicalAttack");
     }
 
     public void PlayerHitAnimation()
     {
-        var squence = DOTween.Sequence();
-        squence.Append(image.DOColor(Color.gray, 0.1f));
-        squence.Append(image.DOColor(originalColor, 0.1f));
     }
 
     public void PlayFaintAnimation()
     {
         var seqence = DOTween.Sequence();
-        seqence.Append(image.transform.DOLocalMoveY(originalPos.y - 150f, 0.5f));
-        seqence.Join(image.DOFade(0f, 0.5f));
+        seqence.Append(transform.DOLocalMoveY(originalPos.y - 150f, 0.5f));
     }
 }

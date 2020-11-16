@@ -10,24 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 441038a44791ef34db2b791259a38eb1, type: 3}
-  m_Name: Bulbasaur
+  m_Name: Apple
   m_EditorClassIdentifier: 
-  name: Bulbasaur
+  name: Apple
   description: 
-  frontSprite: {fileID: 21300000, guid: 0f37bf3cf5680a64d863b5f155b2a597, type: 3}
-  backSprite: {fileID: 21300000, guid: aacaae602a38f884ab9e02e43de3736d, type: 3}
+  animationController: {fileID: 9100000, guid: bc04fb77d8cabdb478a7fa52efc01fb8, type: 2}
+  description: 
+  frontSprite: {fileID: 0}
+  backSprite: {fileID: 0}
   type1: 5
-  type2: 8
-  maxHp: 45
-  attack: 49
-  defense: 49
-  spAttack: 65
-  spDefence: 65
-  speed: 45
+  type2: 0
+  maxHp: 50
+  attack: 25
+  defense: 74
+  spAttack: 9
+  spDefence: 88
+  speed: 56
   learnableMoves:
-  - moveBase: {fileID: 11400000, guid: f077dcd8573a5ad47a3623aad40e8bdf, type: 2}
-    level: 1
-  - moveBase: {fileID: 11400000, guid: cc695e35098b04349ad8dc913e6fc657, type: 2}
+  - moveBase: {fileID: 11400000, guid: 8523eeb77c8460f419b289f4c0a07564, type: 2}
     level: 4
   - moveBase: {fileID: 11400000, guid: f15513dd47e3e1142b9150ac7163de6c, type: 2}
-    level: 7
+    level: 2
+  - moveBase: {fileID: 11400000, guid: d06cf483d456e0748a65be496a07ecc9, type: 2}
+    level: 8
