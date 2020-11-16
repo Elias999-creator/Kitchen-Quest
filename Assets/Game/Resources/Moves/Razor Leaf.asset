@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Razor Leaf
   description: 
-  type: 4
+  type: 5
   power: 55
   accuracy: 95
   pp: 25

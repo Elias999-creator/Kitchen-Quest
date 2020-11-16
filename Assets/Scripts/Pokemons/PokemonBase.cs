@@ -10,6 +10,7 @@ public class PokemonBase : ScriptableObject
     [TextArea]
     [SerializeField] string description;
 
+    [SerializeField] RuntimeAnimatorController animationController;
     [SerializeField] Sprite frontSprite;
     [SerializeField] Sprite backSprite;
 
@@ -35,6 +36,11 @@ public class PokemonBase : ScriptableObject
     public string Description
     {
         get { return description; }
+    }
+
+    public RuntimeAnimatorController AnimationController
+    {
+        get { return animationController; }
     }
 
     public Sprite FrontSprite

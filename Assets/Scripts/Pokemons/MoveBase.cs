@@ -5,6 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Move", menuName = "Pokemon/Create new move")]
 public class MoveBase : ScriptableObject
 {
+    enum AnimationCategory {
+        Physical,
+        Projectile
+    }
+
     [SerializeField] string name;
 
     [TextArea]
@@ -14,6 +19,7 @@ public class MoveBase : ScriptableObject
     [SerializeField] int power;
     [SerializeField] int accuracy;
     [SerializeField] int pp;
+    [SerializeField] AnimationCategory animationCategory;
 
     public string Name
     {
