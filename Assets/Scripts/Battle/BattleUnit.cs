@@ -45,8 +45,16 @@ public class BattleUnit : MonoBehaviour
             animator.SetTrigger("doPhysicalAttack");
     }
 
+    public void PlayAttackAnimation2()
+    {
+        if (animator)
+            animator.SetTrigger("doProjectileAttack");
+    }
+
     public void PlayerHitAnimation()
     {
+        if (animator)
+            animator.SetTrigger("getHit");
     }
 
     public void PlayFaintAnimation()
