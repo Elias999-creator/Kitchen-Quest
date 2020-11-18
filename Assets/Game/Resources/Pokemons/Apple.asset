@@ -15,7 +15,6 @@ MonoBehaviour:
   name: Apple
   description: 
   animationController: {fileID: 9100000, guid: bc04fb77d8cabdb478a7fa52efc01fb8, type: 2}
-  description: 
   frontSprite: {fileID: 0}
   backSprite: {fileID: 0}
   type1: 5

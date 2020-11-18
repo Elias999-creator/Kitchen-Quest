@@ -39,16 +39,14 @@ public class BattleUnit : MonoBehaviour
         transform.DOLocalMoveX(originalPos.x, 1f);
     }
 
-    public void PlayAttackAnimation()
+    public void PlayAttackAnimation(AnimationCategory animationCategory = AnimationCategory.Physical)
     {
-        if(animator)
-            animator.SetTrigger("doPhysicalAttack");
-    }
-
-    public void PlayAttackAnimation2()
-    {
-        if (animator)
-            animator.SetTrigger("doProjectileAttack");
+        if(animator) {
+            if(animationCategory == AnimationCategory.Physical)
+                animator.SetTrigger("doPhysicalAttack");
+            if(animationCategory == AnimationCategory.Projectile)
+                animator.SetTrigger("doProjectileAttack");
+        }
     }
 
     public void PlayerHitAnimation()
@@ -59,7 +57,7 @@ public class BattleUnit : MonoBehaviour
 
     public void PlayFaintAnimation()
     {
-        var seqence = DOTween.Sequence();
-        seqence.Append(transform.DOLocalMoveY(originalPos.y - 150f, 0.5f));
+        if (animator)
+            animator.SetTrigger("onDeath");
     }
 }
