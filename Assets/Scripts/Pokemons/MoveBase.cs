@@ -10,10 +10,6 @@ public enum AnimationCategory {
 [CreateAssetMenu(fileName = "Move", menuName = "Pokemon/Create new move")]
 public class MoveBase : ScriptableObject
 {
-    enum AnimationCategory {
-        Physical,
-        Projectile
-    }
 
     [SerializeField] string name;
 

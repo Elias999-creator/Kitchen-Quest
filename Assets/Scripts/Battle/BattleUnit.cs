@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class BattleUnit : MonoBehaviour
 {
@@ -23,14 +24,14 @@ public class BattleUnit : MonoBehaviour
 
     public void Setup()
     {
-       Pokemon = new Pokemon(_base, level);
+        Pokemon = new Pokemon(_base, level);
         if (!isPlayerUnit && animator)
             animator.runtimeAnimatorController = Pokemon.Base.AnimationController;
 
         PlayerEnterAnimation();
     }
 
-  
+
     public void PlayerEnterAnimation()
     {
         if (!isPlayerUnit)
@@ -41,10 +42,11 @@ public class BattleUnit : MonoBehaviour
 
     public void PlayAttackAnimation(AnimationCategory animationCategory = AnimationCategory.Physical)
     {
-        if(animator) {
-            if(animationCategory == AnimationCategory.Physical)
+        if (animator)
+        {
+            if (animationCategory == AnimationCategory.Physical)
                 animator.SetTrigger("doPhysicalAttack");
-            if(animationCategory == AnimationCategory.Projectile)
+            if (animationCategory == AnimationCategory.Projectile)
                 animator.SetTrigger("doProjectileAttack");
         }
     }
@@ -59,5 +61,11 @@ public class BattleUnit : MonoBehaviour
     {
         if (animator)
             animator.SetTrigger("onDeath");
+    }
+
+    IEnumerator GoBack()
+    {
+        yield return new WaitForSeconds(2.5f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum BattleState { Start, ActionSelection, MoveSelection, PerformMove, Busy }
 
@@ -173,6 +174,7 @@ public class BattleSystem : MonoBehaviour
             else if (currentAction == 1)
             {
                 // Run
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
             }
         }
     }
