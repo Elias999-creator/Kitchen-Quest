@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum AnimationCategory {
+    Physical,
+    Projectile
+}
+
 [CreateAssetMenu(fileName = "Move", menuName = "Pokemon/Create new move")]
 public class MoveBase : ScriptableObject
 {
@@ -49,6 +54,11 @@ public class MoveBase : ScriptableObject
     public int PP
     {
         get { return pp; }
+    }
+    
+    public AnimationCategory AnimationCategory
+    {
+        get { return animationCategory; }
     }
 
     public bool IsSpecial {

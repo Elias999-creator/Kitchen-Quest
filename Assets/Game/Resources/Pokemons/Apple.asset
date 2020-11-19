@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Apple
   m_EditorClassIdentifier: 
   name: Apple
-  description: big bitch
+  description: 
   animationController: {fileID: 9100000, guid: bc04fb77d8cabdb478a7fa52efc01fb8, type: 2}
   frontSprite: {fileID: 0}
   backSprite: {fileID: 0}

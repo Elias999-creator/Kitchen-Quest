@@ -86,7 +86,7 @@ public class BattleSystem : MonoBehaviour
         move.PP--;
         yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.Base.Name} used {move.Base.Name}");
 
-        enemyUnit.PlayAttackAnimation();
+        enemyUnit.PlayAttackAnimation(move.Base.AnimationCategory);
         yield return new WaitForSeconds(1f);
 
         playerUnit.PlayerHitAnimation();
