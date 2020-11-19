@@ -66,6 +66,6 @@ public class BattleUnit : MonoBehaviour
     IEnumerator GoBack()
     {
         yield return new WaitForSeconds(2.5f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene(0);
     }
 }

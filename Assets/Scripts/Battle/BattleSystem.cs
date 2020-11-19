@@ -32,7 +32,7 @@ public class BattleSystem : MonoBehaviour
 
         dialogBox.SetMovesNames(playerUnit.Pokemon.Moves);
 
-        yield return dialogBox.TypeDialog($"A wild {enemyUnit.Pokemon.Base.Name} appeared.");
+        yield return dialogBox.TypeDialog($"A rotten {enemyUnit.Pokemon.Base.Name} appeared.");
 
         ActionSelection();
     }
@@ -40,7 +40,7 @@ public class BattleSystem : MonoBehaviour
     void ActionSelection()
     {
         state = BattleState.ActionSelection;
-        StartCoroutine(dialogBox.TypeDialog("Choose an action"));
+        StartCoroutine(dialogBox.TypeDialog("What will you do?"));
         dialogBox.EnableActionSelector(true);
     }
 
@@ -174,7 +174,7 @@ public class BattleSystem : MonoBehaviour
             else if (currentAction == 1)
             {
                 // Run
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+                SceneManager.LoadScene(0);
             }
         }
     }
