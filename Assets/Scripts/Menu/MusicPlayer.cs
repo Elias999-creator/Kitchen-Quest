@@ -11,6 +11,8 @@ public class MusicPlayer : MonoBehaviour
 
     void Start()
     {
+        DontDestroyOnLoad(AudioSource.transform);
+        DontDestroyOnLoad(gameObject.transform);
         AudioSource.Play();
     }
 

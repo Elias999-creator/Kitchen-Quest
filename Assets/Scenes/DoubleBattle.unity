@@ -1015,7 +1015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _base: {fileID: 11400000, guid: 0a23d2db1cb32534d84755399576939a, type: 2}
-  level: 10
+  level: 5
   isPlayerUnit: 0
 --- !u!212 &682404988
 SpriteRenderer:
@@ -1655,8 +1655,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerUnit: {fileID: 1627711713}
   enemyUnit: {fileID: 682404987}
+  enemyUnit2: {fileID: 1109908726}
   playerHud: {fileID: 2137077436}
   enemyHud: {fileID: 575668596}
+  enemyHud2: {fileID: 2135537235}
   dialogBox: {fileID: 1643316397}
 --- !u!1 &1109908723
 GameObject:
@@ -1760,7 +1762,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _base: {fileID: 11400000, guid: 0a23d2db1cb32534d84755399576939a, type: 2}
-  level: 10
+  level: 5
   isPlayerUnit: 0
 --- !u!95 &1109908727
 Animator:

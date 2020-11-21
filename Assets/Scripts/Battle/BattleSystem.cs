@@ -9,8 +9,10 @@ public class BattleSystem : MonoBehaviour
 {
     [SerializeField] BattleUnit playerUnit;
     [SerializeField] BattleUnit enemyUnit;
+    [SerializeField] BattleUnit enemyUnit2;
     [SerializeField] BattleHud playerHud;
     [SerializeField] BattleHud enemyHud;
+    [SerializeField] BattleHud enemyHud2;
     [SerializeField] BattleDialogBox dialogBox;
 
     BattleState state;
@@ -28,7 +30,10 @@ public class BattleSystem : MonoBehaviour
         enemyUnit.Setup();
         playerHud.SetData(playerUnit.Pokemon);
         enemyHud.SetData(enemyUnit.Pokemon);
-        playerHud.SetData(playerUnit.Pokemon);
+        if (enemyUnit2 && enemyHud2) {
+            enemyUnit2.Setup();
+            enemyHud2.SetData(enemyUnit2.Pokemon);
+        }
 
         dialogBox.SetMovesNames(playerUnit.Pokemon.Moves);
 
@@ -75,19 +80,19 @@ public class BattleSystem : MonoBehaviour
         }
         else
         {
-            StartCoroutine(EnemyMove());
+            StartCoroutine(EnemyMove(enemyUnit));
         }
     }
 
-    IEnumerator EnemyMove()
+    IEnumerator EnemyMove(BattleUnit battleUnit)
     {
         state = BattleState.PerformMove;
 
-        var move = enemyUnit.Pokemon.GetRandomMove();
+        var move = battleUnit.Pokemon.GetRandomMove();
         move.PP--;
-        yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.Base.Name} used {move.Base.Name}");
+        yield return dialogBox.TypeDialog($"{battleUnit.Pokemon.Base.Name} used {move.Base.Name}");
 
-        enemyUnit.PlayAttackAnimation(move.Base.AnimationCategory);
+        battleUnit.PlayAttackAnimation(move.Base.AnimationCategory);
         yield return new WaitForSeconds(1f);
 
         playerUnit.PlayerHitAnimation();
@@ -102,7 +107,14 @@ public class BattleSystem : MonoBehaviour
         }
         else
         {
-            ActionSelection();
+            if (!enemyUnit2)
+                ActionSelection();
+
+            if (enemyUnit2 && battleUnit == enemyUnit)
+                StartCoroutine(EnemyMove(enemyUnit2));
+
+            if (battleUnit == enemyUnit2)
+                ActionSelection();
         }
     }
 
