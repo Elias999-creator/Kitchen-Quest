@@ -8,11 +8,16 @@ public class MusicPlayer : MonoBehaviour
     public AudioSource AudioSource;
 
     private float musicVolume = 1f;
+    private static GameObject instance;
 
-    void Start()
+    void Awake()
     {
-        DontDestroyOnLoad(AudioSource.transform);
-        DontDestroyOnLoad(gameObject.transform);
+        AudioSource = GetComponent<AudioSource>();
+        DontDestroyOnLoad(this);
+        if (instance == null)
+            instance = gameObject;
+        else
+            Destroy(gameObject);
         AudioSource.Play();
     }
 
