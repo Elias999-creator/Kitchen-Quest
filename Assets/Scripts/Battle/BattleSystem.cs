@@ -30,7 +30,8 @@ public class BattleSystem : MonoBehaviour
         enemyUnit.Setup();
         playerHud.SetData(playerUnit.Pokemon);
         enemyHud.SetData(enemyUnit.Pokemon);
-        if (enemyUnit2 && enemyHud2) {
+        if (enemyUnit2 && enemyHud2)
+        {
             enemyUnit2.Setup();
             enemyHud2.SetData(enemyUnit2.Pokemon);
         }
@@ -77,6 +78,8 @@ public class BattleSystem : MonoBehaviour
         {
             yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.Base.Name} Fainted");
             enemyUnit.PlayFaintAnimation();
+            if (enemyUnit.Pokemon.HP == 0 && enemyUnit2.Pokemon.HP == 0)
+                StartCoroutine(GoBack());
         }
         else
         {
@@ -222,5 +225,11 @@ public class BattleSystem : MonoBehaviour
             dialogBox.EnableDialogText(true);
             StartCoroutine(PlayerMove());
         }
+    }
+
+    IEnumerator GoBack()
+    {
+        yield return new WaitForSeconds(2.5f);
+        SceneManager.LoadScene(0);
     }
 }

@@ -18,3 +18,4 @@ MonoBehaviour:
   power: 55
   accuracy: 95
   pp: 25
+  animationCategory: 1
