@@ -1499,8 +1499,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerUnit: {fileID: 1627711713}
   enemyUnit: {fileID: 682404987}
+  enemyUnit2: {fileID: 0}
   playerHud: {fileID: 2137077436}
   enemyHud: {fileID: 575668596}
+  enemyHud2: {fileID: 0}
   dialogBox: {fileID: 1643316397}
 --- !u!1 &1175129690
 GameObject:

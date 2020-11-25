@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 441038a44791ef34db2b791259a38eb1, type: 3}
+  m_Name: Peanut
+  m_EditorClassIdentifier: 
+  name: Peanut
+  description: 
+  animationController: {fileID: 9100000, guid: 7440ebac1adc329458c99974902ef51e, type: 2}
+  frontSprite: {fileID: 0}
+  backSprite: {fileID: 0}
+  type1: 9
+  type2: 0
+  maxHp: 42
+  attack: 48
+  defense: 56
+  spAttack: 58
+  spDefence: 46
+  speed: 39
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: f077dcd8573a5ad47a3623aad40e8bdf, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: a77599248be3248439c8e8cc0e5b0262, type: 2}
+    level: 2
+  - moveBase: {fileID: 11400000, guid: 6f0b6031802bb014b8de9e0e00e7961e, type: 2}
+    level: 4

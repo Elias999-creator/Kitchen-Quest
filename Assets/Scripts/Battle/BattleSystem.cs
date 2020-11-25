@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum BattleState { Start, ActionSelection, MoveSelection, PerformMove, Busy }
+public enum BattleState { Start, ActionSelection, MoveSelection, PerformMove, Busy, EnemySelection }
 
 public class BattleSystem : MonoBehaviour
 {
@@ -18,6 +18,7 @@ public class BattleSystem : MonoBehaviour
     BattleState state;
     int currentAction;
     int currentMove;
+    int currentEnemy;
 
     private void Start()
     {
@@ -26,6 +27,9 @@ public class BattleSystem : MonoBehaviour
 
     public IEnumerator SetupBattle()
     {
+        List<BattleUnit> enemyUnits = new List<BattleUnit>();
+        enemyUnits.Add(enemyUnit);
+        enemyUnits.Add(enemyUnit2);
         playerUnit.Setup();
         enemyUnit.Setup();
         playerHud.SetData(playerUnit.Pokemon);
@@ -37,6 +41,8 @@ public class BattleSystem : MonoBehaviour
         }
 
         dialogBox.SetMovesNames(playerUnit.Pokemon.Moves);
+
+        dialogBox.SetEnemyNames(enemyUnits);
 
         yield return dialogBox.TypeDialog($"A rotten {enemyUnit.Pokemon.Base.Name} appeared.");
 
@@ -56,6 +62,12 @@ public class BattleSystem : MonoBehaviour
         dialogBox.EnableActionSelector(false);
         dialogBox.EnableDialogText(false);
         dialogBox.EnableMoveSelector(true);
+    }
+    void EnemySelection()
+    {
+        state = BattleState.EnemySelection;
+        dialogBox.EnableMoveSelector(false);
+        dialogBox.EnableEnemySelector(true);
     }
 
     IEnumerator PlayerMove()
@@ -78,7 +90,12 @@ public class BattleSystem : MonoBehaviour
         {
             yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.Base.Name} Fainted");
             enemyUnit.PlayFaintAnimation();
-            if (enemyUnit.Pokemon.HP == 0 && enemyUnit2.Pokemon.HP == 0)
+            if (enemyUnit2)
+            {
+                if (enemyUnit.Pokemon.HP == 0 && enemyUnit2.Pokemon.HP == 0)
+                    StartCoroutine(GoBack());
+            }
+            if (enemyUnit2 == false)
                 StartCoroutine(GoBack());
         }
         else
@@ -107,6 +124,8 @@ public class BattleSystem : MonoBehaviour
         {
             yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} Fainted");
             playerUnit.PlayFaintAnimation();
+
+            StartCoroutine(GoBack());
         }
         else
         {
@@ -161,6 +180,10 @@ public class BattleSystem : MonoBehaviour
         else if (state == BattleState.MoveSelection)
         {
             HandleMoveSelection();
+        }
+        else if (state == BattleState.EnemySelection)
+        {
+            HandleEnemySelection();
         }
     }
 
@@ -221,11 +244,33 @@ public class BattleSystem : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            dialogBox.EnableMoveSelector(false);
-            dialogBox.EnableDialogText(true);
+            EnemySelection();
+        }
+    }
+
+    void HandleEnemySelection()
+    {
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            if (currentEnemy < playerUnit.Pokemon.Moves.Count - 1)
+                ++currentEnemy;
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            if (currentEnemy > 0)
+                --currentEnemy;
+        }
+
+        dialogBox.UpdateEnemySelection(currentEnemy);
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            dialogBox.EnableEnemySelector(false);
+            dialogBox.EnableDialogText(true);   
             StartCoroutine(PlayerMove());
         }
     }
+
 
     IEnumerator GoBack()
     {

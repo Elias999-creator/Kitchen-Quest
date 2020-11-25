@@ -11,9 +11,11 @@ public class BattleDialogBox : MonoBehaviour
     [SerializeField] GameObject actionSelector;
     [SerializeField] GameObject moveSelector;
     [SerializeField] GameObject moveDetails;
+    [SerializeField] GameObject enemySelector;
 
     [SerializeField] List<Text> actionTexts;
     [SerializeField] List<Text> moveTexts;
+    [SerializeField] List<Text> enemyTexts;
 
     [SerializeField] Text ppText;
     [SerializeField] Text typeText;
@@ -51,6 +53,12 @@ public class BattleDialogBox : MonoBehaviour
         moveDetails.SetActive(enabled);
     }
 
+    public void EnableEnemySelector(bool enabled)
+    {
+        enemySelector.SetActive(enabled);
+    }
+
+
     public void UpdateActionSelection(int selectedAction)
     {
         for (int i = 0; i < actionTexts.Count; ++i)
@@ -76,6 +84,18 @@ public class BattleDialogBox : MonoBehaviour
         typeText.text = move.Base.Type.ToString();
     }
 
+
+    public void UpdateEnemySelection(int selectedEnemy)
+    {
+        for (int i = 0; i < enemyTexts.Count; ++i)
+        {
+            if (i == selectedEnemy)
+                enemyTexts[i].color = highlightedColor;
+            else
+                enemyTexts[i].color = Color.black;
+        }
+    }
+
     public void SetMovesNames(List<Move> moves)
     {
         for (int i = 0; i < 4; i++)
@@ -86,4 +106,16 @@ public class BattleDialogBox : MonoBehaviour
                 moveTexts[i].text = "    -";
         }
     }
+
+    public void SetEnemyNames(List<BattleUnit> enemyUnits)
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            if (i < enemyUnits.Count)
+                enemyTexts[i].text = enemyUnits[i].Pokemon.Base.Name;
+            else
+                enemyTexts[i].text = "";
+        }
+    }
+    
 }
