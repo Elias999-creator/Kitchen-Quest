@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd5ed45e72f7c73448fac2326d48f964, type: 3}
-  m_Name: Slash
+  m_Name: Caramelised
   m_EditorClassIdentifier: 
-  name: Slice and Dice
+  name: Caramelised
   description: 
-  type: 1
-  power: 70
-  accuracy: 100
-  pp: 20
-  animationCategory: 0
+  type: 9
+  power: 27
+  accuracy: 85
+  pp: 25
+  animationCategory: 1

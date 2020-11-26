@@ -15,7 +15,7 @@ public class BattleDialogBox : MonoBehaviour
 
     [SerializeField] List<Text> actionTexts;
     [SerializeField] List<Text> moveTexts;
-    [SerializeField] List<Text> enemyTexts;
+    [SerializeField]  List<Text> enemyTexts;
 
     [SerializeField] Text ppText;
     [SerializeField] Text typeText;
@@ -109,7 +109,7 @@ public class BattleDialogBox : MonoBehaviour
 
     public void SetEnemyNames(List<BattleUnit> enemyUnits)
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < enemyUnits.Count; i++)
         {
             if (i < enemyUnits.Count)
                 enemyTexts[i].text = enemyUnits[i].Pokemon.Base.Name;

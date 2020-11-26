@@ -2218,6 +2218,7 @@ MonoBehaviour:
   actionSelector: {fileID: 1087234198}
   moveSelector: {fileID: 1242855199}
   moveDetails: {fileID: 67007023}
+  enemySelector: {fileID: 0}
   actionTexts:
   - {fileID: 61155745}
   - {fileID: 1931202900}
@@ -2226,6 +2227,8 @@ MonoBehaviour:
   - {fileID: 1010786064}
   - {fileID: 10302140}
   - {fileID: 624377010}
+  enemyTexts:
+  - {fileID: 0}
   ppText: {fileID: 1695500292}
   typeText: {fileID: 1960471528}
 --- !u!1 &1689881182

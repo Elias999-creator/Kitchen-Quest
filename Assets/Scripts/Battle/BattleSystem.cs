@@ -29,7 +29,10 @@ public class BattleSystem : MonoBehaviour
     {
         List<BattleUnit> enemyUnits = new List<BattleUnit>();
         enemyUnits.Add(enemyUnit);
-        enemyUnits.Add(enemyUnit2);
+        if (enemyUnit2 != null)
+        {
+            enemyUnits.Add(enemyUnit2);
+        }
         playerUnit.Setup();
         enemyUnit.Setup();
         playerHud.SetData(playerUnit.Pokemon);
