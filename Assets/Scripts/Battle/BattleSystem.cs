@@ -45,9 +45,13 @@ public class BattleSystem : MonoBehaviour
 
         dialogBox.SetMovesNames(playerUnit.Pokemon.Moves);
 
-        dialogBox.SetEnemyNames(enemyUnits);
+        if (enemyUnit2)
+            dialogBox.SetEnemyNames(enemyUnits);
 
-        yield return dialogBox.TypeDialog($"A rotten {enemyUnit.Pokemon.Base.Name} appeared.");
+        if (enemyUnit2)
+            yield return dialogBox.TypeDialog($"A rotten {enemyUnit.Pokemon.Base.Name} & {enemyUnit2.Pokemon.Base.Name} appeared.");
+        else
+            yield return dialogBox.TypeDialog($"A rotten {enemyUnit.Pokemon.Base.Name} appeared.");
 
         ActionSelection();
     }
@@ -77,6 +81,8 @@ public class BattleSystem : MonoBehaviour
     {
         state = BattleState.PerformMove;
 
+        var enemy = currentEnemy == 1 ? enemyUnit2 : enemyUnit;
+        var hud = currentEnemy == 1 ? enemyHud2 : enemyHud;
         var move = playerUnit.Pokemon.Moves[currentMove];
         move.PP--;
         yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} used {move.Base.Name}");
@@ -84,26 +90,36 @@ public class BattleSystem : MonoBehaviour
         playerUnit.PlayAttackAnimation();
         yield return new WaitForSeconds(1f);
 
-        enemyUnit.PlayerHitAnimation();
-        var damageDetails = enemyUnit.Pokemon.TakeDamage(move, playerUnit.Pokemon);
-        yield return enemyHud.UpdateHP();
+        enemy.PlayerHitAnimation();
+        var damageDetails = enemy.Pokemon.TakeDamage(move, playerUnit.Pokemon);
+        yield return hud.UpdateHP();
         yield return ShowDamageDetail(damageDetails);
 
         if (damageDetails.Fainted)
         {
-            yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.Base.Name} Fainted");
-            enemyUnit.PlayFaintAnimation();
+            yield return dialogBox.TypeDialog($"{enemy.Pokemon.Base.Name} Fainted");
+            enemy.PlayFaintAnimation();
             if (enemyUnit2)
             {
-                if (enemyUnit.Pokemon.HP == 0 && enemyUnit2.Pokemon.HP == 0)
+                bool isEnemyUnitFainted = enemyUnit.Pokemon.HP == 0;
+                bool isEnemyUnit2Fainted = enemyUnit2.Pokemon.HP == 0;
+
+                if (isEnemyUnitFainted && isEnemyUnit2Fainted)
                     StartCoroutine(GoBack());
+                else
+                {
+                    if (isEnemyUnitFainted)
+                        StartCoroutine(EnemyMove(enemyUnit2));
+                    else
+                        StartCoroutine(EnemyMove(enemyUnit));
+                }
             }
             if (enemyUnit2 == false)
                 StartCoroutine(GoBack());
         }
         else
         {
-            StartCoroutine(EnemyMove(enemyUnit));
+            StartCoroutine(EnemyMove(enemy));
         }
     }
 
@@ -135,10 +151,9 @@ public class BattleSystem : MonoBehaviour
             if (!enemyUnit2)
                 ActionSelection();
 
-            if (enemyUnit2 && battleUnit == enemyUnit)
+            if (enemyUnit2 && enemyUnit2.Pokemon.HP > 0 && battleUnit == enemyUnit)
                 StartCoroutine(EnemyMove(enemyUnit2));
-
-            if (battleUnit == enemyUnit2)
+            else
                 ActionSelection();
         }
     }
@@ -247,7 +262,14 @@ public class BattleSystem : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            EnemySelection();
+            if (enemyUnit2)
+                EnemySelection();
+            else
+            {
+                dialogBox.EnableMoveSelector(false);
+                dialogBox.EnableDialogText(true);
+                StartCoroutine(PlayerMove());
+            }
         }
     }
 
@@ -269,7 +291,7 @@ public class BattleSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             dialogBox.EnableEnemySelector(false);
-            dialogBox.EnableDialogText(true);   
+            dialogBox.EnableDialogText(true);
             StartCoroutine(PlayerMove());
         }
     }
