@@ -148,9 +148,6 @@ public class BattleSystem : MonoBehaviour
         }
         else
         {
-            if (!enemyUnit2)
-                ActionSelection();
-
             if (enemyUnit2 && enemyUnit2.Pokemon.HP > 0 && battleUnit == enemyUnit)
                 StartCoroutine(EnemyMove(enemyUnit2));
             else
