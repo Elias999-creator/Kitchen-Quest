@@ -1093,7 +1093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _base: {fileID: 11400000, guid: e7e328c2378df12428db2e5f2b3bdaee, type: 2}
-  level: 1
+  level: 3
   isPlayerUnit: 0
 --- !u!212 &682404988
 SpriteRenderer:
@@ -1902,7 +1902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _base: {fileID: 11400000, guid: 0a23d2db1cb32534d84755399576939a, type: 2}
-  level: 1
+  level: 5
   isPlayerUnit: 0
 --- !u!95 &1109908727
 Animator:
@@ -2865,7 +2865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _base: {fileID: 11400000, guid: f927d7c92734ee243bafc36a743009d0, type: 2}
-  level: 10
+  level: 8
   isPlayerUnit: 1
 --- !u!1 &1643316393
 GameObject:
