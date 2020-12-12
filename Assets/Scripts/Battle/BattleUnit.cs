@@ -25,8 +25,7 @@ public class BattleUnit : MonoBehaviour
     public void Setup()
     {
         Pokemon = new Pokemon(_base, level);
-        if (!isPlayerUnit && animator)
-            animator.runtimeAnimatorController = Pokemon.Base.AnimationController;
+        animator.runtimeAnimatorController = Pokemon.Base.AnimationController;
 
         PlayerEnterAnimation();
     }
@@ -42,24 +41,19 @@ public class BattleUnit : MonoBehaviour
 
     public void PlayAttackAnimation(AnimationCategory animationCategory = AnimationCategory.Physical)
     {
-        if (animator)
-        {
-            if (animationCategory == AnimationCategory.Physical)
-                animator.SetTrigger("doPhysicalAttack");
-            if (animationCategory == AnimationCategory.Projectile)
-                animator.SetTrigger("doProjectileAttack");
-        }
+        if (animationCategory == AnimationCategory.Physical)
+            animator.SetTrigger("doPhysicalAttack");
+        if (animationCategory == AnimationCategory.Projectile)
+            animator.SetTrigger("doProjectileAttack");
     }
 
     public void PlayerHitAnimation()
     {
-        if (animator)
-            animator.SetTrigger("getHit");
+        animator.SetTrigger("getHit");
     }
 
     public void PlayFaintAnimation()
     {
-        if (animator)
-            animator.SetTrigger("onDeath");
+        animator.SetTrigger("onDeath");
     }
 }
